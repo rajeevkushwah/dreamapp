@@ -119,21 +119,17 @@
                                           <div class="col-md-3">
                                             <div class="form-group">
                                               <div class="input-group">
-                                                <select class="form-control" data-placeholder="Choose a State" tabindex="1" ngModel name="building{{i}}" #stateVl="ngModel" required>
-                                                  <option value="State 1">Quadrant</option>
-                                                  <option value="State 1">SE</option>
-                                                  <option value="State 2">SW</option>
-                                                  <option value="State 3">NE</option>
-                                                  <option value="State 4">S</option>
-                                                  <option value="State 4">N</option>
-                                                  <option value="State 4">E</option>
-                                                  <option value="State 4">W</option>
+                                                <select class="form-control" data-placeholder="Choose a State" tabindex="1" ngModel name="state{{i}}" #stateVl="ngModel">
+                                                  <option value="State 1" >Quadrant</option>
+                                                  <option value="State 2">SE</option>
+                                                  <option value="State 3">SW</option>
+                                                  <option value="State 4">NE</option>
+                                                  <option value="State 5">S</option>
+                                                  <option value="State 6">N</option>
+                                                  <option value="State 7">E</option>
+                                                  <option value="State 8">W</option>
                                                 </select>
-
-                                              <div *ngIf="stateVl.invalid && (stateVl.dirty || stateVl.touched)" class="text-danger">
-                                                  <p *ngIf="stateVl.errors.required">State is required.</p>
-                                                  
-                                              </div>
+                                              
                                               </div>
                                             </div>
                                           </div>
@@ -441,12 +437,13 @@
                                         </span>
 
                                           
-                                              <div *ngIf="besttimeVl.invalid && (besttimeVl.dirty || besttimeVl.touched)" class="text-danger">
+                                             
+                                      </div>
+                                       <div *ngIf="besttimeVl.invalid && (besttimeVl.dirty || besttimeVl.touched)" class="text-danger">
                                                   <p *ngIf="besttimeVl.errors.required">Time is required.</p>
                                                   <p *ngIf="besttimeVl.errors?.pattern">Time must be numeric.</p>
                                                   
                                               </div>
-                                      </div>
                                     </div>
 
                                     <div class="form-group mt-5">
