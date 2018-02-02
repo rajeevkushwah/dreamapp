@@ -1,0 +1,12 @@
+.scrollTable{
+    overflow-y: scroll;
+    height: 300px;
+   }
+.phoneValid, .emailValid{
+      flex-wrap: wrap;
+   }
+.phoneValidInput, .emailValidInput{
+      width: 100%;
+      order: 10;
+   }
+ 
