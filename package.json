@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "rm -rf node_modules package.json.lock",
+    "postinstall": "ng build",
     "ng": "ng",
     "start": "ng serve --port 3003",
     "build": "ng build --prod",
