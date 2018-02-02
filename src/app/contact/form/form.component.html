@@ -74,8 +74,12 @@
                                     </div>
                                     <h3 class="box-title m-b-30">
                                       Address 
-                                      <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id="" (click)="addNewRow('address')" ><i class="fa fa-plus-circle"></i></button></h3>
+                                      <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id="" (click)="addNewRow('address')" ><i class="fa fa-plus-circle"></i></button>
+
+
+                                    </h3>
                                       <div class="address-row" *ngFor="let itemrow of arr.address; let i=index">
+                                         <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id="" *ngIf="arr.address.length > 1 && i!=0" (click)="deleteRow('address',i)" ><i class="fa fa-times"></i></button>
                                         <div class="form-group">
                                           <div class="input-group">
                                             <div class="input-group-btn">
@@ -86,16 +90,17 @@
                                                 <a class="dropdown-item" href="#">Other</a>
                                               </div>
                                             </div>
-                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Street address, P.O. Box" [(ngModel)]="item.address" name="address" #addressVl="ngModel" required minlength="3" maxlength="100">
-                                            <div *ngIf="addressVl.invalid && (addressVl.dirty || addressVl.touched)" class="text-danger">
+                                            <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Street address, P.O. Box" ngModel name="address{{i}}" #addressVl="ngModel" required minlength="3" maxlength="100">
+                                            
+                                          </div>
+                                          <div *ngIf="addressVl.invalid && (addressVl.dirty || addressVl.touched)" class="text-danger">
                                                 <p *ngIf="addressVl.errors.required">Address is required.</p>
                                                 
                                             </div>
-                                          </div>
                                         </div>
 
                                         <div class="form-group">
-                                          <input type="text" class="form-control" id="street" placeholder="Suite No, Street name" [(ngModel)]="item.street" name="street" #streetVl="ngModel" required minlength="3" maxlength="100">
+                                          <input type="text" class="form-control" id="street" placeholder="Suite No, Street name" ngModel name="street{{i}}" #streetVl="ngModel" required minlength="3" maxlength="100">
                                             <div *ngIf="streetVl.invalid && (streetVl.dirty || streetVl.touched)" class="text-danger">
                                                 <p *ngIf="streetVl.errors.required">Street is required.</p>
                                                 
@@ -104,7 +109,7 @@
                                         <div class="row">
                                           <div class="col-md-9">
                                             <div class="form-group">
-                                              <input type="text" class="form-control" id="building" placeholder="Apartment/Building" [(ngModel)]="item.building" name="building" #buildingVl="ngModel" required minlength="3" maxlength="100">
+                                              <input type="text" class="form-control" id="building" placeholder="Apartment/Building" ngModel name="building{{i}}" #buildingVl="ngModel" required minlength="3" maxlength="100">
                                               <div *ngIf="buildingVl.invalid && (buildingVl.dirty || buildingVl.touched)" class="text-danger">
                                                   <p *ngIf="buildingVl.errors.required">Apartment/Building is required.</p>
                                                   
@@ -114,7 +119,7 @@
                                           <div class="col-md-3">
                                             <div class="form-group">
                                               <div class="input-group">
-                                                <select class="form-control" data-placeholder="Choose a State" tabindex="1" [(ngModel)]="item.state" name="building" #stateVl="ngModel" required>
+                                                <select class="form-control" data-placeholder="Choose a State" tabindex="1" ngModel name="building{{i}}" #stateVl="ngModel" required>
                                                   <option value="State 1">Quadrant</option>
                                                   <option value="State 1">SE</option>
                                                   <option value="State 2">SW</option>
@@ -138,7 +143,7 @@
                                           <div class="col-md-6">
                                             <div class="form-group">
                                               <label for="first_name">City</label>
-                                              <input type="text" class="form-control" id="city" placeholder="City" [(ngModel)]="item.city" name="city" pattern="^[A-Za-z]+$" #cityVl="ngModel" required minlength="3" maxlength="100">
+                                              <input type="text" class="form-control" id="city" placeholder="City" ngModel name="city{{i}}" pattern="^[A-Za-z]+$" #cityVl="ngModel" required minlength="3" maxlength="100">
                                               <div *ngIf="cityVl.invalid && (cityVl.dirty || cityVl.touched)" class="text-danger">
                                                   <p *ngIf="cityVl.errors.required">City is required.</p>
                                                   <p *ngIf="cityVl.errors?.pattern">City name must be string.</p>
@@ -149,7 +154,7 @@
                                           <div class="col-md-6">
                                             <div class="form-group">
                                               <label class="control-label">State/Province</label>
-                                              <input type="text" class="form-control" id="province" placeholder="State/Province" pattern="^[A-Za-z]+$" [(ngModel)]="item.province" name="province" #provinceVl="ngModel" required minlength="3" maxlength="100">
+                                              <input type="text" class="form-control" id="province" placeholder="State/Province" pattern="^[A-Za-z]+$" ngModel name="province{{i}}" #provinceVl="ngModel" required minlength="3" maxlength="100">
                                               <div *ngIf="provinceVl.invalid && (provinceVl.dirty || provinceVl.touched)" class="text-danger">
                                                   <p *ngIf="provinceVl.errors.required">State is required.</p>
                                                   <p *ngIf="provinceVl.errors?.pattern">State name must be string.</p>
@@ -163,7 +168,7 @@
                                           <div class="col-md-6">
                                             <div class="form-group">
                                               <label for="first_name">Postal Code / Zip Code</label>
-                                              <input type="text" class="form-control" id="first_name" placeholder="Postal Code / Zip Code" pattern="^[0-9]+$" [(ngModel)]="item.zipcode" name="zipcode" #zipcodeVl="ngModel" required minlength="6" maxlength="10">
+                                              <input type="text" class="form-control" id="first_name" placeholder="Postal Code / Zip Code" pattern="^[0-9]+$" ngModel name="zipcode{{i}}" #zipcodeVl="ngModel" required minlength="6" maxlength="10">
                                               <div *ngIf="zipcodeVl.invalid && (zipcodeVl.dirty || zipcodeVl.touched)" class="text-danger">
                                                   <p *ngIf="zipcodeVl.errors.required">Zipcode is required.</p>
                                                   <p *ngIf="zipcodeVl.errors?.pattern">Zipcode must be numeric.</p>
@@ -176,7 +181,7 @@
                                           <div class="col-md-6">
                                             <div class="form-group">
                                               <label class="control-label">Country</label>
-                                              <input type="text" class="form-control" id="Country" placeholder="Country" [(ngModel)]="item.country" pattern="^[A-Za-z]+$" name="country" #countryVl="ngModel" required minlength="3" maxlength="100">
+                                              <input type="text" class="form-control" id="Country" placeholder="Country" ngModel pattern="^[A-Za-z]+$" name="country{{i}}" #countryVl="ngModel" required minlength="3" maxlength="100">
                                               <div *ngIf="countryVl.invalid && (countryVl.dirty || countryVl.touched)" class="text-danger">
                                                   <p *ngIf="countryVl.errors.required">Country is required.</p>
                                                   <p *ngIf="countryVl.errors?.pattern">Country must be string.</p>
@@ -186,7 +191,7 @@
                                           </div>
                                         </div>
 
-                                        <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id="" *ngIf="arr.address.length > 1" (click)="deleteRow('address',i)" ><i class="fa fa-times"></i></button>
+                                       
                                       </div>
                                       
                                     
@@ -370,7 +375,7 @@
                                               <a class="dropdown-item" href="#">Work</a>
                                             </div>
                                           </div>
-                                          <input type="text" class="form-control" id="phone" data-error="Your Phone number is not valid."  [(ngModel)]="item.phone" name="phone" #phoneVl="ngModel" pattern="^[0-9]+$" minlength="10" maxlength="10" required>
+                                          <input type="text" class="form-control" id="phone" data-error="Your Phone number is not valid."  ngModel name="phone{{i}}" #phoneVl="ngModel" pattern="^[0-9]+$" minlength="10" maxlength="10" required>
                                               <div *ngIf="phoneVl.invalid && (phoneVl.dirty || phoneVl.touched)" class="text-danger phoneValidInput">
                                                   <p *ngIf="phoneVl.errors.required">Phone Number is required.</p>
                                                   <p *ngIf="phoneVl.errors?.pattern">Phone must be numeric.</p>
@@ -411,7 +416,7 @@
                                               <a class="dropdown-item" href="#">Work</a>
                                             </div>
                                           </div>
-                                          <input type="email" class="form-control" aria-label="Text input with dropdown button" placeholder="example@email.com" data-error="That email address is invalid" [(ngModel)]="item.email" name="email"  #emailVl="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required >
+                                          <input type="email" class="form-control" aria-label="Text input with dropdown button" placeholder="example@email.com" data-error="That email address is invalid" ngModel name="email{{i}}"  #emailVl="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required >
 
                                           <div *ngIf="emailVl.invalid && (emailVl.dirty || emailVl.touched)" class="text-danger emailValidInput">
                                             <p *ngIf="emailVl.errors.required">Email is required.</p>
