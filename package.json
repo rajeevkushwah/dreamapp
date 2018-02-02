@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "ng build --aot -prod",
+    "postinstall": "ng build",
     "ng": "ng",
     "start": "ng serve --port 3003",
     "build": "ng build --prod",
