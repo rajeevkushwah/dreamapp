@@ -73,9 +73,9 @@
                                       </div>
                                     </div>
                                     <h3 class="box-title m-b-30">
-                                      Address
-                                      <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id=""><i class="fa fa-plus-circle"></i></button></h3>
-                                      <div class="address-row">
+                                      Address 
+                                      <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id="" (click)="addNewRow('address')" ><i class="fa fa-plus-circle"></i></button></h3>
+                                      <div class="address-row" *ngFor="let itemrow of arr.address; let i=index">
                                         <div class="form-group">
                                           <div class="input-group">
                                             <div class="input-group-btn">
@@ -185,8 +185,10 @@
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
 
+                                        <button class="pull-right btn btn-default btn-rounded ml-3 add_address_button" type="button" id="" *ngIf="arr.address.length > 1" (click)="deleteRow('address',i)" ><i class="fa fa-times"></i></button>
+                                      </div>
+                                      
                                     
                                   </div>
                                 </div>
@@ -356,10 +358,10 @@
                                         </div>
                                       </div>
                                     </div>
-                                    <div class="phone-number-row">
+                                    <div class="phone-number-row" *ngFor="let itemrow of arr.phone; let i=index">
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Phone Number</label>
-                                        <div class="input-group phoneValid">
+                                        <div class="input-group phoneValid"  >
                                           <div class="input-group-btn">
                                             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
                                             <div class="dropdown-menu">
@@ -390,13 +392,14 @@
                                               <span class="custom-control-description">T</span>
                                             </label>
                                           </div>
-                                          <button class="btn btn-default btn-rounded ml-3 add_phone_number_button" type="button" id=""><i class="fa fa-plus-circle"></i></button>
+                                          <button class="btn btn-default btn-rounded ml-3 add_phone_number_button" type="button"  *ngIf="i == 0" (click)="addNewRow('phone')" id=""><i class="fa fa-plus-circle"></i></button>
+                                          <button class="btn btn-default btn-rounded ml-3 add_phone_number_button" type="button" *ngIf="arr.phone.length > 1 && i != 0" (click)="deleteRow('phone',i)" id=""><i class="fa fa-times"></i></button>
                                         </div>
                                         <div class="help-block with-errors"></div>
                                       </div>
                                     </div>
 
-                                    <div class="email-row">
+                                    <div class="email-row" *ngFor="let itemrow of arr.email; let i=index">
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Email</label>
                                         <div class="input-group emailValid">
@@ -413,8 +416,10 @@
                                           <div *ngIf="emailVl.invalid && (emailVl.dirty || emailVl.touched)" class="text-danger emailValidInput">
                                             <p *ngIf="emailVl.errors.required">Email is required.</p>
                                              <p *ngIf="emailVl.errors?.pattern || emailVl.errors?.maxlength || emailVl.errors?.minlength">Invalid Email.</p>
-                                          </div>
-                                          <button class="btn btn-default btn-rounded ml-3 add_email_button" type="button" id=""><i class="fa fa-plus-circle"></i></button>
+                                          </div>                                         
+
+                                          <button class="btn btn-default btn-rounded ml-3 add_email_button" type="button"  *ngIf="i == 0" (click)="addNewRow('email')" id=""><i class="fa fa-plus-circle"></i></button>
+                                          <button class="btn btn-default btn-rounded ml-3 add_email_button" type="button" *ngIf="arr.email.length > 1 && i != 0" (click)="deleteRow('email',i)" id=""><i class="fa fa-times"></i></button>
                                         </div>
                                         <div class="help-block with-errors"></div>
                                       </div>

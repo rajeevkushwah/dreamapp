@@ -17,6 +17,9 @@ export class FormComponent  implements OnInit {
   moduleTypes: any = [];
   language: any;
   previewImage: any;
+  arr:any={address:[{name:"item"}],
+          phone:[{name:"item"}],
+          email:[{name:"item"}]};
   constructor(
   
     public router: Router
@@ -27,6 +30,17 @@ export class FormComponent  implements OnInit {
    
   }
 
+
+
+addNewRow(array:string) {
+    
+    this.arr[array].push({name:"item"});
+}
+
+deleteRow(array:string,index: number) {    
+    //this.arr.removeAt(index);
+    this.arr[array].splice(index,1)
+}
  
 
 }
